@@ -1,0 +1,221 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    --light-grey: #dbdbdb;
+    --light-green: #63ddc1;
+    --light-blue: #63bddd;
+}
+
+body {
+    background-color: var(--light-grey);
+}
+
+.title {
+    font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+.section-title {
+    margin-top: 20px;
+}
+
+/*
+====================
+Grocery Item Input Section
+====================
+*/
+
+.grocery-list-form-container {
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+    max-width: 960px;
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 5px 13px rgba(0,0,0,0.7);
+    position: relative;
+}
+
+.list-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 960px;
+}
+
+.text-input-container {
+    margin-top: 15px;
+    width: 90%;
+    border-bottom: 5px solid black;
+}
+
+.text-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color:  black;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.submit-button {
+    width: 80%;
+    margin-top: 15px;
+    font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    border: 3px solid black;
+    background-color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 2s;
+}
+
+.submit-button:hover {
+    background: black;
+    /*border: 3px solid white;*/
+    color: white;
+}
+
+/*
+===================
+Grocery List Section
+===================
+*/
+.grocery-list-items-container {
+    border: 1px solid black;
+    background-color: #4184bf;
+    padding: 20px;
+    max-width: 960px;
+    width: 100%;
+    margin: 15px auto;
+    text-align: center;
+    box-shadow: 0 5px 13px rgba(0,0,0,0.7);
+    position: relative;
+}
+
+.grocery-items {
+    margin-top: 20px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 35px;
+    margin: 5px 0;
+    border-radius: 10px;
+    transition: background-color 2s;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: white;
+}
+
+.item-title {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+}
+
+.delete-icon {
+    width: 15px;
+    height: 15px;
+    transition: width 1s, height 1s;
+}
+
+.item:hover .delete-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.clear-button {
+    width: 80%;
+    margin-top: 15px;
+    font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    border: 3px solid #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 2s;
+    background-color:  #ed9923;
+}
+
+/*
+=======================
+Messages
+=======================
+*/
+
+.hidden {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.danger {
+    background-color:  #f90206;
+    color: white;
+    transition: all ease-in-out;
+}
+
+.pass {
+    background-color:  #5abf41;
+    color: white;
+    transition: all ease-in-out;
+}
+
+.alert-message-box {
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: auto;
+    text-align: center;
+    font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.form-alert-box {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    transition: right 1s, opacity 2s;
+}
+
+.list-alert-box {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    transition: right 1s, opacity 2s;
+}
+
+.opacity-one {
+    opacity: 1;
+}
+
+.opacity-zero {
+    opacity: 0;
+}
+
+.slide-right {
+    right: -300px;
+}
+
+.slide-left {
+    right: 0;
+}
+
+.form-item-prefix,
+.list-item-prefix {
+    text-transform: capitalize;
+}
