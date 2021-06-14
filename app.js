@@ -1,25 +1,33 @@
-function createItem(item) {
-    let itemContainer = document.createElement("div");
-    itemContainer.classList.add("item");
-
+function getGroceryItemName(itemName) {
     let itemTitleWrapper = document.createElement("span");
     itemTitleWrapper.classList.add("item-title", "title");
 
-    let itemTitle = document.createTextNode(item);
+    let itemTitle = document.createTextNode(itemName);
     itemTitleWrapper.appendChild(itemTitle);
 
+    return itemTitleWrapper;
+}
+
+function createDeleteIcon() {
     let deleteIcon = document.createElement("img");
     deleteIcon.classList.add("delete-icon");
     deleteIcon.src = "trash_icon.svg";
-    deleteIcon.alt = "trash-icon";
-    deleteIcon.addEventListener("click", clearOne)
-    itemContainer.appendChild(itemTitleWrapper);
-    itemContainer.appendChild(deleteIcon);
-
-    let groceryItemsContainer = document.getElementsByClassName("grocery-items")[0];
-
-    groceryItemsContainer.appendChild(itemContainer);
+    deleteIcon.alt = "trash icon";
+    deleteIcon.addEventListener("click", clearOneItem);
+    return deleteIcon;
 }
+
+function createItemElement(groceryItem) {
+    let groceryItemContainer = document.createElement("div");
+    groceryItemContainer.classList.add("item");
+
+    groceryItemContainer.appendChild(getGroceryItemName(groceryItem));
+    groceryItemContainer.appendChild(createDeleteIcon());
+
+    let groceryItems = document.getElementsByClassName("grocery-items")[0];
+    groceryItems.appendChild(groceryItemContainer);
+}
+
 
 let groceryItems = [];
 checkLocalStorage();
@@ -41,7 +49,7 @@ function updateList() {
     let lengthOfList = groceryItems.length;
     let counter = 0;
     while (counter != lengthOfList) {
-        createItem(groceryItems[counter]);
+        createItemElement(groceryItems[counter]);
         counter++;
     }
 }
@@ -88,24 +96,24 @@ function listFeedbackMessage(itemName = "") {
     }, 3000);
 }
 
-function clearOne(e) {
+function clearOneItem(e) {
     let itemsContainer = e.target.parentNode.parentNode;
     let itemWrapper = e.target.parentNode;
     let itemName = itemWrapper.getElementsByClassName("item-title")[0].textContent;
-    console.log(itemName)
-    let index = groceryItems.indexOf(itemName);
+
     groceryItems = groceryItems.filter((item) => {
         return item != itemName;
     })
+
     localStorage.setItem("groceriesList", JSON.stringify(groceryItems));
     listFeedbackMessage(itemName);
     itemsContainer.removeChild(itemWrapper);
 }
 
 const groceryListContainer = document.getElementsByClassName("grocery-items")[0];
-const clearAllButton = document.getElementsByClassName("clear-button")[0];
-clearAllButton.addEventListener("click", clearAll);
-function clearAll() {
+const clearAllElementsButton = document.getElementsByClassName("clear-button")[0];
+clearAllElementsButton.addEventListener("click", clearAllElements);
+function clearAllElements() {
     if (!groceryItems.length) {
         return;
     }
@@ -125,12 +133,38 @@ groceryListForm.addEventListener("submit", function (e) {
     let inputString = e.currentTarget[0].value;
     if (inputString.length > 0) {
         addToLocalStorage(inputString);
-        createItem(inputString);
+        createItemElement(inputString);
     }
     formFeedbackMessage(inputString);
     e.currentTarget[0].value = "";
 })
 
+/*
+
+function createItem(item) {
+    let itemContainer = document.createElement("div");
+    itemContainer.classList.add("item");
+
+    let itemTitleWrapper = document.createElement("span");
+    itemTitleWrapper.classList.add("item-title", "title");
+
+    let itemTitle = document.createTextNode(item);
+    itemTitleWrapper.appendChild(itemTitle);
+
+    let deleteIcon = document.createElement("img");
+    deleteIcon.classList.add("delete-icon");
+    deleteIcon.src = "trash_icon.svg";
+    deleteIcon.alt = "trash-icon";
+    deleteIcon.addEventListener("click", clearOneItem)
+    itemContainer.appendChild(itemTitleWrapper);
+    itemContainer.appendChild(deleteIcon);
+
+    let groceryItemsContainer = document.getElementsByClassName("grocery-items")[0];
+
+    groceryItemsContainer.appendChild(itemContainer);
+}
+
+*/
 
 /*
 
